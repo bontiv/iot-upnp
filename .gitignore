@@ -1,0 +1,14 @@
+__pycache__
+/.pc
+/debian/patches
+/debian/*.ex
+/debian/*.EX
+/debian/pydoor
+/debian/*.debhelper
+/debian/*.debhelper.log
+/build/
+/dist/
+*.egg-info/
+*.pyc
+.ftpconfig
+/runedit.cmd
