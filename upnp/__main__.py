@@ -24,5 +24,5 @@ if __name__ == "__main__":
     upnpd = Annoncer(dev)
     upnpd.initLoop()
     upnpd.notify()
-    #upnpd.foreaver()
+    upnpd.foreaver()
     upnpd.dispose()

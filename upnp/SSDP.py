@@ -29,8 +29,6 @@ class AnnouncerService(ssdp.SimpleServiceDiscoveryProtocol):
                 headers[name] = value
 
             if self.annonces.provides(headers['ST']):
-                print ('MATCH')
-                print(request)
                 self.annonces.answer(headers['ST'], addr)
 
 class Notify(ssdp.SSDPRequest):
@@ -58,6 +56,7 @@ class Notify(ssdp.SSDPRequest):
             ('SERVER', ip),
             ('NT', self.nt),
             ('USN', usn),
+            ('BOOTID.UPNP.ORG', self.config.srv.annonces.count),
             ('CONFIGID.UPNP.ORG', self.config.annoncer.configId),
         ]
 
@@ -72,18 +71,38 @@ class Notify(ssdp.SSDPRequest):
     def sendto(self, transport, addr):
         msg = bytes(self) + b'\r\n\r\n'
         transport.sendto(msg, addr)
+        self.config.srv.annonces.count = self.config.srv.annonces.count + 1
 
 class Answer(ssdp.SSDPResponse):
-    def __init__(self, status_code, reason):
+    def __init__(self, config, status_code, reason):
         super(Answer, self).__init__(status_code, reason)
+        self.config = config
+
+    def send(self, device, ip, addr):
+        import datetime
+
+        self.headers = [
+            ('CACHE-CONTROL',  'max-age=' + str(self.config.maxage)),
+            ('DATE', datetime.datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')),
+            ('ST', device.st),
+            ('USN', device.uuid + '::' + device.st),
+            ('EXT', ''),
+            ('SERVER', self.config.signature),
+            ('LOCATION', 'http://' + ip + ':' + str(self.config.annoncer.http.port) + '/descr.xml'),
+            ('BOOTID.UPNP.ORG', self.config.srv.annonces.count),
+            ('CONFIGID.UPNP.ORG', self.config.annoncer.configId),
+        ]
+        self.sendto(self.config.transport, addr)
 
     def sendto(self, transport, addr):
         msg = bytes(self) + b'\r\n\r\n'
         transport.sendto(msg, addr)
+        self.config.srv.annonces.count = self.config.srv.annonces.count + 1
 
 class SSDP_Protocol:
     def __init__(self, config):
         self.config = config
+        self.count = 1
 
     def notify(self, device, ip):
         notify = Notify(self.config, device)
@@ -98,22 +117,22 @@ class SSDP_Protocol:
     def answer(self, st, addr):
         import locale, datetime
 
-        message = Answer(200, "OK")
+        message = Answer(self.config, 200, "OK")
         #locale.setlocale(locale.LC_TIME, 'fr_FR')
-        message.headers = [
-            ('CACHE-CONTROL',  'max-age=' + str(self.config.maxage)),
-            ('DATE', datetime.datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')),
-            ('ST', st),
-            ('USN', self.getUSN(st)),
-            ('EXT', ''),
-            ('SERVER', AnnouncerService.SSDP_SERVER),
-            ('LOCATION', self.location),
-            ('BOOTID.UPNP.ORG', self.count),
-            ('CONFIGID.UPNP.ORG', self.annoncer.configId),
-        ]
-        print (message)
-        message.sendto(self.transport, addr)
+        for device in self.getDevices(st):
+            for ip in self.config.interfaces:
+                message.send(device, ip, addr)
 
+    def getDevices(self, st):
+        devices = list()
+        if self.config.annoncer.device.st == st:
+            devices.append(self.config.annoncer.device)
+        return devices
+
+    def provides(self, usn):
+        if self.config.annoncer.device.st == usn:
+            return True
+        return False
 
 class SSDP:
     def __init__(self, annoncer, netBind='0.0.0.0'):
@@ -143,7 +162,6 @@ class SSDP:
 
     def notify(self):
         for ip in self.interfaces:
-            print('Notify IP {}'.format(ip))
             self.srv.annonces.notify(self.annoncer.device, ip)
 
     def dispose(self):
