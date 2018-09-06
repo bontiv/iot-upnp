@@ -34,7 +34,7 @@ except ImportError:
 
 #README
 this_directory = path.abspath(path.dirname(__file__))
-with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
+with open(path.join(this_directory, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 #Main setup
@@ -56,7 +56,7 @@ setup(name='iot-upnp',
     python_requires='>3.0',
     url='https://github.com/bontiv/iot-upnp',
     long_description=long_description,
-    long_description_content_type='text/markdown',
+    long_description_content_type='text/x-rst',
 
     project_urls={
         'Documentation': 'https://bontiv.github.io/iot-upnp/',
