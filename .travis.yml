@@ -31,7 +31,7 @@ jobs:
       dist: trusty
       language: java
       install: skip
-      script: sonar-scanner
+      script: sonar-scanner -Dsonar.projectVersion=$TRAVIS_TAG
       addons:
         sonarcloud:
           organization: "bontiv-github"
