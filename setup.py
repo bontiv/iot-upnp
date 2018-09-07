@@ -5,7 +5,7 @@ from setuptools import setup
 from os import path
 
 version = '0.1'
-release = '0.1.dev7'
+release = '0.1.dev8'
 cmdclass = {}
 cmdopts = {}
 
