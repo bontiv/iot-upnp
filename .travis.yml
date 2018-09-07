@@ -61,6 +61,7 @@ jobs:
             condition: $TRAVIS_TAG =~ ^v[0-9.]*$
 
         - provider: pypi
+          distributions: "sdist bdist_wheel"
           user: "bontiv"
           password: $PYPI_PASSWORD
           server: https://test.pypi.org/legacy/
@@ -68,6 +69,7 @@ jobs:
             tags: true
 
         - provider: pypi
+          distributions: "sdist bdist_wheel"
           user: "bontiv"
           password: $PYPI_PASSWORD
           on:
