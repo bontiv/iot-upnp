@@ -1,23 +1,35 @@
 # -*- coding: utf-8 -*-
 
-class Device:
+class BaseObj:
+    def __init__(self, obj=None):
+        if obj == None:
+            return
+
+        for atr in obj:
+            if hasattr(self, atr):
+                setattr(self, atr, obj[atr])
+
+class Device(BaseObj):
     def __init__(self, obj=None):
         """
         Device object
         """
         self.services = []
         self.devices = []
-        self.uuid = obj['uuid']
-        self.st = 'upnp:rootdevice'
-        self.deviceType = 'urn:sadmin-fr:device:demo:1'
-        self.friendlyName = 'Demo UPnP Device'
-        self.manufacturer = 'SADMIN'
-        self.manufacturerURL = 'http://sadmin.fr'
-        self.Description = 'Test for UPnP Device'
-        self.modelName = 'UPnP-Demo'
-        self.modelNumber = 'UPnP-1.0'
+        self.icons = []
+        self.uuid = ''
+        self.st = ''
+        self.deviceType = ''
+        self.friendlyName = ''
+        self.manufacturer = ''
+        self.manufacturerURL = ''
+        self.Description = ''
+        self.modelName = ''
+        self.modelNumber = ''
         self.upc = ''
-        self.presentationURL = 'http://google.fr/'
+        self.presentationURL = ''
+
+        super(Device, self).__init__(obj)
 
     def addService(self, service):
         self.services.append(service)
@@ -25,9 +37,24 @@ class Device:
     def addDevice(self, device):
         self.devices.append(device)
 
-class Service:
+class Icon(BaseObj):
+    def __init__(self, obj=None):
+        self.width = 32
+        self.height = 32
+        self.depth = 24
+        self.mimetype = 'image/png'
+
+        super(Icon, self).__init__(obj)
+
+class Service(BaseObj):
     def __init__(self, obj=None):
         """
         Service object
         """
-        pass
+        self.serviceType = ''
+        self.serviceId = ''
+        self.SCPDURL = ''
+        self.controlURL = ''
+        self.eventSubURL = ''
+
+        super(Service, self).__init__(obj)

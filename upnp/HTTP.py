@@ -78,12 +78,60 @@ class DescriptionAnswer(HttpAnswer):
         super(DescriptionAnswer, self).__init__(request)
         self.upnp = upnp
 
+    def describeDevice(self, device):
+        self.data += """
+        <device>
+            <deviceType>{DEVICE.deviceType}</deviceType>
+            <friendlyName>{DEVICE.friendlyName}</friendlyName>
+            <manufacturer>{DEVICE.manufacturer}</manufacturer>
+            <manufacturerURL>{DEVICE.manufacturerURL}</manufacturerURL>
+            <modelDescription>{DEVICE.Description}</modelDescription>
+            <modelName>{DEVICE.modelName}</modelName>
+            <modelNumber>{DEVICE.modelNumber}</modelNumber>
+            <UDN>uuid:{DEVICE.uuid}</UDN>
+            <UPC>{DEVICE.upc}</UPC>
+            <presentationURL>{DEVICE.presentationURL}</presentationURL>
+            <iconList>
+        """.format(DEVICE=device, CONFIGID=self.upnp.configId, URL=self.URL, HOST=self.HOST, HOSTNAME=self.HOSTNAME)
+        for icon in device.icons:
+            self.describeIcon(icon)
+
+        self.data += """
+        </iconList><serviceList>
+        """
+        for service in device.services:
+            self.describeService(service)
+
+        self.data += """
+        </serviceList><deviceList>
+        """
+        for subdev in device.devices:
+            self.describeDevice(subdev)
+        self.data += """
+        </deviceList></device>
+        """
+
+
+    def describeIcon(self, icon):
+        pass
+
+    def describeService(self, service):
+        self.data += """
+        <service>
+            <serviceType>{SERVICE.serviceType}</serviceType>
+            <serviceId>{SERVICE.serviceId}</serviceId>
+            <controlURL>{SERVICE.controlURL}</controlURL>
+            <eventSubURL>{SERVICE.eventSubURL}</eventSubURL>
+            <SCPDURL>{SERVICE.SCPDURL}</SCPDURL>
+        </service>
+        """.format(SERVICE=service)
+
     def execute(self):
 
         self.headers['Content-Type'] = 'application/xml; charset=utf-8'
-        URL = 'http://{}'.format(self.request.headers['host'])
-        HOST = self.request.headers['host'].split(':')[0]
-        HOSTNAME = gethostname()
+        self.URL = 'http://{}'.format(self.request.headers['host'])
+        self.HOST = self.request.headers['host'].split(':')[0]
+        self.HOSTNAME = gethostname()
 
         self.data = """<?xml version="1.0"?>
         <root xmlns="urn:schemas-upnp-org:device-1-0" configId="{CONFIGID}">
@@ -91,58 +139,17 @@ class DescriptionAnswer(HttpAnswer):
                 <major>1</major>
                 <minor>0</minor>
             </specVersion>
-            <device>
-                <deviceType>{DEVICE.deviceType}</deviceType>
-                <friendlyName>{DEVICE.friendlyName}</friendlyName>
-                <manufacturer>{DEVICE.manufacturer}</manufacturer>
-                <manufacturerURL>{DEVICE.manufacturerURL}</manufacturerURL>
-                <modelDescription>{DEVICE.Description}</modelDescription>
-                <modelName>{DEVICE.modelName}</modelName>
-                <modelNumber>{DEVICE.modelNumber}</modelNumber>
-                <UDN>uuid:{DEVICE.uuid}</UDN>
-                <UPC>{DEVICE.upc}</UPC>
-                <iconList>
-                <icon>
-                    <mimetype>image/png</mimetype>
-                    <width>256</width>
-                    <height>256</height>
-                    <depth>32</depth>
-                    <url>{URL}/icon256.png</url>
-                </icon>
-                <icon>
-                    <mimetype>image/png</mimetype>
-                    <width>128</width>
-                    <height>128</height>
-                    <depth>32</depth>
-                    <url>{URL}/icon128.png</url>
-                </icon>
-                <icon>
-                    <mimetype>image/png</mimetype>
-                    <width>32</width>
-                    <height>32</height>
-                    <depth>32</depth>
-                    <url>{URL}/icon32.png</url>
-                </icon>
-                </iconList>
-                <serviceList>
-                    <service>
-                        <serviceType>urn:doorctl.sadmin.fr:service:doorgate:1</serviceType>
-                        <serviceId>urn:doorctl.sadmin.fr:serviceId:1</serviceId>
-                        <SCPDURL>{URL}/scpd.xml</SCPDURL>
-                        <controlURL>{URL}/control</controlURL>
-                        <eventSubURL>{URL}/event</eventSubURL>
-                    </service>
-                  <!-- TODO -->
-                </serviceList>
-                <deviceList>
-                  <!-- TODO -->
-                </deviceList>
-                <presentationURL>https://{HOST}/</presentationURL>
-            </device>
+        """.format(CONFIGID=self.upnp.configId)
+        self.describeDevice(self.upnp.device)
+        self.data += """
         </root>
-        """.format(UUID=self.upnp.device.uuid, DEVICE=self.upnp.device, URL=URL, CONFIGID=self.upnp.configId, HOST=HOST, HOSTNAME=HOSTNAME)
+        """
 
 class ScpdAnswer(HttpAnswer):
+    def __init__(self, request, upnp):
+        super(DescriptionAnswer, self).__init__(request)
+        self.upnp = upnp
+
     def execute(self):
 
         self.headers['Content-Type'] = 'application/xml; charset=utf-8'
@@ -157,7 +164,7 @@ class ScpdAnswer(HttpAnswer):
             <actionList>
             </actionList>
         </scpd>
-        """.format(UUID=UUID, URL=URL, CONFIGID=CONFIGID)
+        """.format(UUID=UUID, URL=URL, CONFIGID=self.upnp.configId)
 
 class HttpServer:
     def __init__(self, config):

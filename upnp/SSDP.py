@@ -77,6 +77,7 @@ class Answer(ssdp.SSDPResponse):
     def __init__(self, config, status_code, reason):
         super(Answer, self).__init__(status_code, reason)
         self.config = config
+        self.st = ''
 
     def send(self, device, ip, addr):
         import datetime
@@ -84,7 +85,7 @@ class Answer(ssdp.SSDPResponse):
         self.headers = [
             ('CACHE-CONTROL',  'max-age=' + str(self.config.maxage)),
             ('DATE', datetime.datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')),
-            ('ST', device.st),
+            ('ST', self.st),
             ('USN', device.uuid + '::' + device.st),
             ('EXT', ''),
             ('SERVER', self.config.signature),
@@ -118,18 +119,26 @@ class SSDP_Protocol:
         import locale, datetime
 
         message = Answer(self.config, 200, "OK")
+        message.st = st
         #locale.setlocale(locale.LC_TIME, 'fr_FR')
         for device in self.getDevices(st):
             for ip in self.config.interfaces:
                 message.send(device, ip, addr)
 
     def getDevices(self, st):
+        #root device
+        if st == 'upnp:rootdevice':
+            return [self.config.annoncer.device]
+
         devices = list()
         if self.config.annoncer.device.st == st:
             devices.append(self.config.annoncer.device)
         return devices
 
     def provides(self, usn):
+        if usn == 'upnp:rootdevice':
+            return True
+
         if self.config.annoncer.device.st == usn:
             return True
         return False

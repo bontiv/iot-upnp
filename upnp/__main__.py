@@ -12,6 +12,7 @@ if __name__ == "__main__":
     print('Starting test service UPnP')
 
     dev = Device({
+        'deviceType': 'urn:sadmin-fr:device:demo:1',
         'friendlyName': 'UPnP Test',
         'uuid': '00a56575-78fa-40fe-b107-8f4b5043a2b0',
         'manufacturer': 'BONNET',
@@ -19,6 +20,8 @@ if __name__ == "__main__":
     })
 
     dev.addService(Service({
+        'serviceType': 'sadmin-fr:service:dummy',
+        'serviceId': 'sadmin-fr:serviceId:1',
     }))
 
     upnpd = Annoncer(dev)
