@@ -8,29 +8,25 @@ python:
 install:
   - python setup.py -q install
   - pip install sphinx
-stages:
-  - build
-  - test
-  - dist
-jobs:
-  include:
-    - stage: "build"
-      name: "Build package"
-      script: python setup.py build
-
-    - stage: "test"
-      name: "Test suite"
-      script: python setup.py test
-
-    - stage: "dist"
-      name: "Build release"
-      script:
-        - python setup.py bdist
-        - python setup.py sdist
-        - python setup.py bdist_wheel
+script:
+  - python setup.py build
+  - python setup.py test
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+
 branches:
   only:
     - master
+
+before_deploy:
+  - python setup.py bdist
+  - python setup.py sdist
+  - python setup.py bdist_wheel
+
+deploy:
+  provider: release
+  api_key:
+    secure: YOUR_API_KEY_ENCRYPTED
+  file: "dist/*"
+  skip_cleanup: true
