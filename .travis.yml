@@ -18,6 +18,7 @@ after_success:
 branches:
   only:
     - master
+    - /^v\d+\..*/
 
 before_deploy:
   - python setup.py bdist
