@@ -26,7 +26,6 @@ before_deploy:
 
 deploy:
   provider: releases
-  api_key:
-    secure: YOUR_API_KEY_ENCRYPTED
+  api_key: $GITHUB_OAUTH_TOKEN
   file: "dist/*"
   skip_cleanup: true
