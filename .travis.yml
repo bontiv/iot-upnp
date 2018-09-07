@@ -20,22 +20,32 @@ branches:
     - master
     - /^v\d+\..*/
 
+stages:
+  - test
+  - deploy
+
+jobs:
+  include:
+    - stage: deploy
+      name: Deployment
+      script: python setup.py sdist
+      deploy:
+        - provider: releases
+          api_key: $GITHUB_OAUTH_TOKEN
+          file: "dist/*"
+          skip_cleanup: true
+          on:
+            tags: true
+
+        - provider: pypi
+          user: "bontiv"
+          password: $PYPI_PASSWORD
+          server: https://test.pypi.org/legacy/
+          on:
+            tags: true
+      if: tag IS present
+
 before_deploy:
   - python setup.py bdist
   - python setup.py sdist
   - python setup.py bdist_wheel
-
-deploy:
-  - provider: releases
-    api_key: $GITHUB_OAUTH_TOKEN
-    file: "dist/*"
-    skip_cleanup: true
-    on:
-      tags: true
-
-  - provider: pypi
-    user: "bontiv"
-    password: $PYPI_PASSWORD
-    server: https://test.pypi.org/legacy/
-    on:
-      tags: true

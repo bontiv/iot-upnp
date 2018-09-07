@@ -16,6 +16,7 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
+from os import getenv
 
 # -- Project information -----------------------------------------------------
 
@@ -26,7 +27,7 @@ author = 'Remi BONNET'
 # The short X.Y version
 version = '0.1'
 # The full version, including alpha/beta/rc tags
-release = '0.0.dev1'
+release = getenv('TRAVIS_TAG', '0.1.dev10')
 
 
 # -- General configuration ---------------------------------------------------

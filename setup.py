@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 
 from setuptools import setup
-from os import path
+from os import path, getenv
 
 version = '0.1'
-release = '0.1.dev10'
+release = getenv('TRAVIS_TAG', '0.1.dev10')
 cmdclass = {}
 cmdopts = {}
 
