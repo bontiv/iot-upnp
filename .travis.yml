@@ -55,6 +55,14 @@ jobs:
           server: https://test.pypi.org/legacy/
           on:
             tags: true
+
+        - provider: pypi
+          user: "bontiv"
+          password: $PYPI_PASSWORD
+          on:
+            tags: true
+            condition: $TRAVIS_TAG =~ ^[0-9.]*$
+
       if: tag IS present
 
 before_deploy:
