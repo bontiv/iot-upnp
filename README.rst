@@ -8,7 +8,7 @@ IoT UPnP
     :alt: Documentation Status
 .. image:: https://codecov.io/gh/bontiv/iot-upnp/branch/master/graph/badge.svg
       :target: https://codecov.io/gh/bontiv/iot-upnp
-      
+
 This project is a little pure Python library to annonce a device by
 UPnP. It’s made for IoT developers to let them show their device on
 network discovery in any OS.
@@ -54,7 +54,7 @@ announce the device.
    import upnp
 
    device = upnp.Device()
-   device.deviceType = 'run-sadmin-fr:device:demo:1'
+   device.deviceType = 'urn:sadmin-fr:device:demo:1'
    device.friendlyName = 'Demo UPnP Device'
    device.manufacturer = 'Bontiv'
    device.manufacturerURL = 'https://github.com/bontiv/'

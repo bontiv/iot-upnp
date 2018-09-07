@@ -26,6 +26,16 @@ stages:
 
 jobs:
   include:
+    - stage: test
+      name: "Code Quality"
+      dist: trusty
+      language: java
+      script: sonar-scanner
+      addons:
+        sonarcloud:
+          organization: "bontiv-github"
+          token: $SONAR_TOKEN
+
     - stage: deploy
       name: Deployment
       script: python setup.py sdist bdist bdist_wheel
