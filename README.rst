@@ -8,6 +8,10 @@ IoT UPnP
     :alt: Documentation Status
 .. image:: https://codecov.io/gh/bontiv/iot-upnp/branch/master/graph/badge.svg
       :target: https://codecov.io/gh/bontiv/iot-upnp
+.. image:: https://sonarcloud.io/api/project_badges/measure?project=bontiv_iot-upnp&metric=sqale_rating
+      :target: https://sonarcloud.io/dashboard?id=bontiv_iot-upnp
+.. image:: https://sonarcloud.io/api/project_badges/measure?project=bontiv_iot-upnp&metric=alert_status
+      :target: https://sonarcloud.io/dashboard?id=bontiv_iot-upnp
 
 This project is a little pure Python library to annonce a device by
 UPnP. It’s made for IoT developers to let them show their device on
