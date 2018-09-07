@@ -25,7 +25,7 @@ before_deploy:
   - python setup.py bdist_wheel
 
 deploy:
-  provider: release
+  provider: releases
   api_key:
     secure: YOUR_API_KEY_ENCRYPTED
   file: "dist/*"
