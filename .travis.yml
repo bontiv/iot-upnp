@@ -30,6 +30,7 @@ jobs:
       name: "Code Quality"
       dist: trusty
       language: java
+      install: skip
       script: sonar-scanner
       addons:
         sonarcloud:
