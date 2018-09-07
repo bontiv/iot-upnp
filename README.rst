@@ -1,6 +1,14 @@
 IoT UPnP
 ========
 
+.. image:: https://travis-ci.org/bontiv/iot-upnp.svg?branch=master
+    :target: https://travis-ci.org/bontiv/iot-upnp
+.. image:: https://readthedocs.org/projects/iot-upnp/badge/?version=latest
+    :target: https://iot-upnp.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
+.. image:: https://codecov.io/gh/bontiv/iot-upnp/branch/master/graph/badge.svg
+      :target: https://codecov.io/gh/bontiv/iot-upnp
+      
 This project is a little pure Python library to annonce a device by
 UPnP. It’s made for IoT developers to let them show their device on
 network discovery in any OS.

@@ -8,9 +8,29 @@ python:
 install:
   - python setup.py -q install
   - pip install sphinx
-script:
-  - python setup.py build bdist sdist bdist_wheel
-  - python setup.py build_docs
+stages:
+  - build
+  - test
+  - dist
+jobs:
+  include:
+    - stage: "build"
+      name: "Build package"
+      script: python setup.py build
+
+    - stage: "test"
+      name: "Test suite"
+      script: python setup.py test
+
+    - stage: "dist"
+      name: "Build release"
+      script:
+        - python setup.py bdist
+        - python setup.py sdist
+        - python setup.py bdist_wheel
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
 branches:
   only:
     - master
