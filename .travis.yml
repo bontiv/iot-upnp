@@ -25,7 +25,16 @@ before_deploy:
   - python setup.py bdist_wheel
 
 deploy:
-  provider: releases
-  api_key: $GITHUB_OAUTH_TOKEN
-  file: "dist/*"
-  skip_cleanup: true
+  - provider: releases
+    api_key: $GITHUB_OAUTH_TOKEN
+    file: "dist/*"
+    skip_cleanup: true
+    on:
+      tags: true
+
+  - provider: pypi
+    user: "bontiv"
+    password: $PYPI_PASSWORD
+    server: https://test.pypi.org/legacy/
+    on:
+      tags: true
