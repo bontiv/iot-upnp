@@ -7,22 +7,18 @@ class HttpResponder(asyncio.Protocol):
         peername = transport.get_extra_info('peername')
         print('Connection from {}'.format(peername))
         self.transport = transport
-        pass
 
     def connection_lost(self, exc):
         print('Connection lost')
-        pass
 
     def data_received(self, data):
         message = data.decode()
         print('Data received: {!r}'.format(message))
         print('Close the client socket')
         #self.transport.close()
-        pass
 
     def eof_received(self):
         print('End data')
-        pass
 
 class HttpRequest:
     def __init__(self, method, path, version, headers):
