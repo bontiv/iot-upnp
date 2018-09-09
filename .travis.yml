@@ -40,7 +40,7 @@ jobs:
 
     - stage: docs
       name: Documentation
-      script: python setyp.py build_docs
+      script: python setup.py build_docs
       deploy:
         provider: pages
         skip-cleanup: true
