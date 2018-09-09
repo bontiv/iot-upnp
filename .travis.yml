@@ -6,6 +6,7 @@ python:
   - "3.5"
   - "3.6"
 install:
+  - sudo apt-get install -qq python3 python3-pip
   - sudo pip3 install --upgrade pip setuptools pytest pytest-cov
   - sudo python3 setup.py -q install
 script:
@@ -30,10 +31,8 @@ jobs:
       name: "Code Quality"
       dist: trusty
       language: java
-      before_install:
-        - sudo apt-get install -qq python3 python3-pip
       script:
-        - pytest-3 --cov-branch --cov=./ --cov-report=xml
+        - python3 -m pytest --cov-branch --cov=./ --cov-report=xml
         - sonar-scanner -Dsonar.projectVersion=$TRAVIS_TAG
       addons:
         sonarcloud:
