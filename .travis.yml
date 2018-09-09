@@ -6,8 +6,8 @@ python:
   - "3.5"
   - "3.6"
 install:
-  - python3 setup.py -q install
   - pip3 install setuptools
+  - python3 setup.py -q install
   - pip3 install coverage
 script:
   - python setup.py build
