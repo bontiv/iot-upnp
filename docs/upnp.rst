@@ -4,43 +4,15 @@ upnp package
 Submodules
 ----------
 
-upnp\.HTTP module
------------------
+.. toctree::
 
-.. automodule:: upnp.HTTP
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-upnp\.Objects module
---------------------
-
-.. automodule:: upnp.Objects
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-upnp\.SSDP module
------------------
-
-.. automodule:: upnp.SSDP
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-upnp\.UPnP module
------------------
-
-.. automodule:: upnp.UPnP
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
+   upnp.HTTP
+   upnp.Objects
+   upnp.SSDP
+   upnp.UPnP
 
 Module contents
 ---------------
 
 .. automodule:: upnp
     :members:
-    :undoc-members:
-    :show-inheritance:

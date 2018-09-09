@@ -1,7 +1,7 @@
-Modules
-=======
+upnp
+====
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
 
    upnp

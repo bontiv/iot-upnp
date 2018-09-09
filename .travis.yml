@@ -51,6 +51,12 @@ jobs:
         on:
           branch: master
 
+    - stage: docs
+      name: Documentation coverage
+      install:
+        - pip install -r docs/requirements.txt
+      script: make -C docs/ coverage
+
     - stage: deploy
       name: Deployment
       script: python setup.py sdist bdist bdist_wheel
