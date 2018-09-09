@@ -60,7 +60,7 @@ setup(name='iot-upnp',
     ],
 
     extras_require={
-        'docs': ['sphinx']
+        'docs': ['sphinx', 'sphinxcontrib-fulltoc']
     },
 
     cmdclass=cmdclass,

@@ -7,7 +7,6 @@ python:
   - "3.6"
 install:
   - python setup.py -q install
-  - pip install sphinx
 script:
   - python setup.py build
   - python setup.py test
@@ -40,6 +39,9 @@ jobs:
 
     - stage: docs
       name: Documentation
+      install:
+        - python setup.py -q install
+        - pip install -r docs/requirements.txt
       script: python setup.py build_docs
       deploy:
         provider: pages
