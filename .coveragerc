@@ -1,0 +1,10 @@
+[run]
+branch = True
+include = upnp/*
+omit =
+  */__main__.py
+  */__init__.py
+  test*.py
+
+[xml]
+output = build/coverage.xml
