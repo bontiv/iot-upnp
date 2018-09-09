@@ -6,12 +6,10 @@ python:
   - "3.5"
   - "3.6"
 install:
+  - sudo pip3 install --upgrade pip setuptools pytest pytest-cov
   - sudo python3 setup.py -q install
-  - sudo pip3 install coverage
 script:
-  - python setup.py build
-  - coverage run --include=upnp/* setup.py test
-  - coverage xml
+  - pytest-3 --cov-branch --cov=./ --cov-report=xml
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
@@ -32,12 +30,10 @@ jobs:
       name: "Code Quality"
       dist: trusty
       language: java
-      before_install: sudo apt-get install -qq python3 python3-pip python3-setuptools
+      before_install:
+        - sudo apt-get install -qq python3 python3-pip
       script:
-        - python3 setup.py -v test
-        - python3 -m coverage run setup.py test
-        - python3 -m unittest
-        - python3 -m coverage xml
+        - pytest-3 --cov-branch --cov=./ --cov-report=xml
         - sonar-scanner -Dsonar.projectVersion=$TRAVIS_TAG
       addons:
         sonarcloud:
