@@ -12,22 +12,14 @@ cmdopts = {}
 #Using Shinx documentation
 try:
     from sphinx.setup_command import BuildDoc
-    import os.path
 
-    class GitlabDocs(BuildDoc):
-        def finalize_options(self):
-            super(GitlabDocs, self).finalize_options()
-            self.builder_target_dirs = [(builder, self.build_dir if builder == 'html' else os.path.join(self.build_dir, builder)) for builder in self.builder]
-            print(self.builder_target_dirs)
-
-
-    cmdclass['build_docs'] = GitlabDocs
+    cmdclass['build_docs'] = BuildDoc
     cmdopts['build_docs'] = {
         'project': ('setup.py', 'IoT-UPnP'),
         'version': ('setup.py', version),
         'release': ('setup.py', release),
-        'source_dir' : ('setup.py', 'docs.src'),
-        'build_dir' : ('setup.py', 'docs')
+        'source_dir' : ('setup.py', 'docs'),
+        'build_dir' : ('setup.py', 'build')
     }
 except ImportError:
     print("You must install Sphinx for documentation generation")

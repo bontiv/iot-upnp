@@ -8,14 +8,7 @@ Welcome to IoT-UPnP's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
-.. automodule:: upnp
-      :members: Annoncer, Device, Service
 
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   quickstart/index
+   modules
+   links

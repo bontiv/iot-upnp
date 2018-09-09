@@ -22,6 +22,7 @@ branches:
 
 stages:
   - test
+  - docs
   - deploy
 
 jobs:
@@ -36,6 +37,17 @@ jobs:
         sonarcloud:
           organization: "bontiv-github"
           token: $SONAR_TOKEN
+
+    - stage: docs
+      name: Documentation
+      script: python setyp.py build_docs
+      deploy:
+        provider: pages
+        skip-cleanup: true
+        gitub-token: $GITHUB_OAUTH_TOKEN
+        local-dir: build/html
+        on:
+          branch: master
 
     - stage: deploy
       name: Deployment

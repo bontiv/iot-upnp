@@ -17,6 +17,9 @@
 # sys.path.insert(0, os.path.abspath('.'))
 
 from os import getenv
+import os, sys
+sys.path.insert(0, os.path.abspath('..'))
+print(sys.path)
 
 # -- Project information -----------------------------------------------------
 
@@ -43,7 +46,10 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.coverage',
     'sphinx.ext.githubpages',
+    'sphinxcontrib.fulltoc',
 ]
+
+display_toc = False
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
