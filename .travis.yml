@@ -32,8 +32,10 @@ jobs:
       name: "Code Quality"
       dist: trusty
       language: java
-      install: skip
-      script: sonar-scanner -Dsonar.projectVersion=$TRAVIS_TAG
+      script:
+        - coverage run setup.py test
+        - coverage xml
+        - sonar-scanner -Dsonar.projectVersion=$TRAVIS_TAG
       addons:
         sonarcloud:
           organization: "bontiv-github"
