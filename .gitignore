@@ -13,3 +13,4 @@ __pycache__
 .ftpconfig
 /runedit.cmd
 .buildinfo
+.coverage

@@ -7,9 +7,11 @@ python:
   - "3.6"
 install:
   - python setup.py -q install
+  - pip install coverage
 script:
   - python setup.py build
-  - python setup.py test
+  - coverage run --include=upnp/* setup.py test
+  - coverage xml
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
