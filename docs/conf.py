@@ -48,8 +48,9 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.coverage',
     'sphinx.ext.githubpages',
-    'sphinxcontrib.fulltoc',
 ]
+
+if not rtdf: extensions.append('sphinxcontrib.fulltoc')
 
 display_toc = False
 
@@ -95,12 +96,12 @@ if rtdf:
         'display_version': True,
         'prev_next_buttons_location': 'bottom',
         'style_external_links': False,
-        'vcs_pageview_mode': '',
         # Toc options
         'collapse_navigation': True,
         'sticky_navigation': True,
         'navigation_depth': 4,
-        'includehidden': True
+        'includehidden': True,
+        'titles_only': False
     }
 
 else:
