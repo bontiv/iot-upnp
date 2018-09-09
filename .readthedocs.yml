@@ -3,7 +3,7 @@ build:
 
 python:
   version: 3.6
-  setu_pu_install: false
+  setup_py_install: true
 
 requirements_file:
   docs/requirements.txt
