@@ -3,6 +3,7 @@
 
 from setuptools import setup
 from os import path, getenv
+from pip.req import parse_requirements
 
 version = '0.1'
 release = getenv('TRAVIS_TAG', '0.1.dev10')
@@ -28,6 +29,10 @@ except ImportError:
 this_directory = path.abspath(path.dirname(__file__))
 with open(path.join(this_directory, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
+
+with open(path.join(this_directory, 'docs', 'requirements.txt')) as f:
+    docs_required = f.read().splitlines()
+print(docs_required)
 
 #Main setup
 setup(name='iot-upnp',
@@ -60,7 +65,7 @@ setup(name='iot-upnp',
     ],
 
     extras_require={
-        'docs': ['sphinx', 'sphinxcontrib-fulltoc']
+        'docs': docs_required
     },
 
     cmdclass=cmdclass,

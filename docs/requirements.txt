@@ -2,3 +2,4 @@ pip>=18.0
 pbr
 sphinx
 sphinxcontrib-fulltoc
+sphinx_rtd_theme
