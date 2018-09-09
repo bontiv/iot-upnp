@@ -6,8 +6,8 @@ python:
   - "3.5"
   - "3.6"
 install:
-  - python setup.py -q install
-  - pip install coverage
+  - python3 setup.py -q install
+  - pip3 install coverage
 script:
   - python setup.py build
   - coverage run --include=upnp/* setup.py test
@@ -34,8 +34,8 @@ jobs:
       language: java
       before_install: sudo apt-get install -qq python3
       script:
-        - coverage run setup.py test
-        - coverage xml
+        - python3 -m coverage run setup.py test
+        - python3 -m coverage xml
         - sonar-scanner -Dsonar.projectVersion=$TRAVIS_TAG
       addons:
         sonarcloud:
