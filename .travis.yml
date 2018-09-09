@@ -6,8 +6,8 @@ python:
   - "3.5"
   - "3.6"
 install:
-  - python3 setup.py -q install
-  - pip3 install coverage
+  - sudo python3 setup.py -q install
+  - sudo pip3 install coverage
 script:
   - python setup.py build
   - coverage run --include=upnp/* setup.py test
