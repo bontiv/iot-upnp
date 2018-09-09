@@ -10,7 +10,7 @@ install:
   - sudo pip3 install --upgrade pip setuptools pytest pytest-cov
   - sudo python3 setup.py -q install
 script:
-  - python3 -m pytest --cov-branch --cov=./ --cov-report=xml:build/coverage.xml
+  - python3 -m pytest --cov-branch --cov=./ --cov-report=xml:coverage.xml
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
@@ -32,7 +32,7 @@ jobs:
       dist: trusty
       language: java
       script:
-        - python3 -m pytest --cov-branch --cov=./ --cov-report=xml:build/coverage.xml
+        - python3 -m pytest --cov-branch --cov=./ --cov-report=xml:coverage.xml
         - sonar-scanner -Dsonar.projectVersion=$TRAVIS_TAG
       addons:
         sonarcloud:
