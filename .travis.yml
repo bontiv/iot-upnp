@@ -10,7 +10,7 @@ install:
   - sudo pip3 install --upgrade pip setuptools pytest pytest-cov
   - sudo python3 setup.py -q install
 script:
-  - pytest-3 --cov-branch --cov=./ --cov-report=xml:build/coverage.xml
+  - python3 -m pytest --cov-branch --cov=./ --cov-report=xml:build/coverage.xml
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
