@@ -3,7 +3,7 @@ Usage with attribute
 
 You can use attributes to manage objects.
 
-.. highlight:: python
+.. code:: python
 
   import upnp
 

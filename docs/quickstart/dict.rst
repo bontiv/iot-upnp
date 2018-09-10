@@ -3,7 +3,7 @@ Usage with dict
 
 For easy class initialisation, you can call the constructor with a dict.
 
-.. highlight:: python
+.. code:: python
 
   import upnp
 
