@@ -56,7 +56,7 @@ setup(name='iot-upnp',
     long_description_content_type='text/x-rst',
 
     project_urls={
-        'Documentation': 'https://bontiv.github.io/iot-upnp/',
+        'Documentation': 'https://iot-upnp.readthedocs.io/',
         'Tracker': 'https://github.com/bontiv/iot-upnp/issues'
     },
     install_requires=[

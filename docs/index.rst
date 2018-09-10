@@ -10,5 +10,5 @@ Welcome to IoT-UPnP's documentation!
    :maxdepth: 2
 
    quickstart/index
-   modules
+   apidoc/modules
    links
