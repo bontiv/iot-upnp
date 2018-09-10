@@ -1,6 +1,15 @@
 Quickstart
 ==========
 
+.. toctree::
+  :maxdepth: 2
+  :hidden:
+
+  dict
+  attribute
+  asyncio
+
+
 IoT-UPnP require python 3.x. It use the following modules:
 * asyncio: for the main event loop
 * ssdp: base library for SSDP (a component of UPnP)
@@ -27,10 +36,3 @@ On UPnP references, a device can also have many embedded devices.
 
 To make a UPnP device, you need to make a service, add this service to a device
 and them, announce this device as a root device.
-
-.. toctree::
-  :maxdepth: 2
-
-  dict
-  attribute
-  asyncio
