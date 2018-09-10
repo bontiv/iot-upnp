@@ -202,14 +202,14 @@ class HTTP:
         self.port = port
         self.netbind = netbind
         self.server = None
-        self.http = HttpServer(self)
+        self.http_server = HttpServer(self)
         self.annoncer = annoncer
 
         if self.netbind == '0.0.0.0':
-            self.netBind = None
+            self.netbind = None
 
     def initLoop(self, loop):
-        self.server = asyncio.start_server(self.http.InConnection, port=self.port, host=self.netBind)
+        self.server = asyncio.start_server(self.http_server.InConnection, port=self.port, host=self.netbind)
         self.httploop = loop.run_until_complete(self.server)
 
     def dispose(self):
