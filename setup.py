@@ -3,7 +3,6 @@
 
 from setuptools import setup
 from os import path, getenv
-from pip.req import parse_requirements
 
 version = '0.1'
 release = getenv('TRAVIS_TAG', '0.1.dev10')
