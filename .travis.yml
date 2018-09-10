@@ -37,6 +37,8 @@ jobs:
         - python3 setup.py -q install --user
       script:
         - python3 -m pytest --cov-branch --cov=./ --cov-report=xml:coverage.xml
+        - which pylint
+        - "pylint upnp -r n --msg-template="{path}:{line}: [{msg_id}({symbol}), {obj}] {msg}" > pylint.txt"
         - sonar-scanner -Dsonar.projectVersion=$TRAVIS_TAG
       addons:
         sonarcloud:
