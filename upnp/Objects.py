@@ -20,7 +20,9 @@ class Device(_BaseObj):
     def __init__(self, obj=None):
         """
         Device object initialisation
+
         :param obj: A dict with attributes
+        :type obj: dict or None
         """
         self.services = []
         self.devices = []
@@ -42,6 +44,7 @@ class Device(_BaseObj):
     def addService(self, service):
         """
         Add a service on this device
+
         :param service: The service to add
         :type service: upnp.Service
         """
@@ -50,6 +53,7 @@ class Device(_BaseObj):
     def addDevice(self, device):
         """
         Add an embedded device
+        
         :param device: The embedded device to add
         :type device: upnp.Device
         """

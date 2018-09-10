@@ -6,12 +6,22 @@ from .HTTP import HTTP
 
 from random import randrange
 
-class Annoncer:
+class Announcer:
     """
     Annoncer main class
     """
 
     def __init__(self, device, httpPort=5000, netBind='0.0.0.0'):
+        """
+        Initiate a UPnP Announcer and responder server
+
+        :param device: The root device
+        :type device: upnp.Device
+        :param httpPort: The HTTP port number for description and control
+        :type httpPort: int
+        :param netBind: An interface IP to bind to
+        :type netBind: str
+        """
         self.device = None
         self.loop = asyncio.get_event_loop()
 
@@ -24,6 +34,9 @@ class Annoncer:
     def initLoop(self, loop=None):
         """
         Initialise an asyncio loop to handle network packages
+
+        :param loop: An asyncio event loop to initialise
+        :type loop: asyncio.AbstractEventLoop
         """
         if loop != None:
             self.loop = loop
@@ -32,9 +45,15 @@ class Annoncer:
         self.ssdp.initLoop(self.loop)
 
     def notify(self):
+        """
+        Send NOTIFY SSDP packets on the network to announce a new device
+        """
         self.ssdp.notify()
 
     def bye(self):
+        """
+        Send BYE SSP packets on the network
+        """
         pass
 
     def dispose(self):
@@ -55,3 +74,6 @@ class Annoncer:
 
         self.dispose()
         self.loop.close()
+
+class Annoncer(Announcer):
+    pass

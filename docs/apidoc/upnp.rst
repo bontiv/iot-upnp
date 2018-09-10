@@ -16,3 +16,5 @@ Module contents
 
 .. automodule:: upnp
     :members:
+    :undoc-members:
+    :show-inheritance:

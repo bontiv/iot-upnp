@@ -3,7 +3,6 @@ Quickstart
 
 .. toctree::
   :maxdepth: 2
-  :hidden:
 
   dict
   attribute
@@ -11,17 +10,24 @@ Quickstart
 
 
 IoT-UPnP require python 3.x. It use the following modules:
-* asyncio: for the main event loop
-* ssdp: base library for SSDP (a component of UPnP)
-* netifaces: Network interfaces discovery (to retrieve IPs)
+
+  * asyncio: for the main event loop
+  * ssdp: base library for SSDP (a component of UPnP)
+  * netifaces: Network interfaces discovery (to retrieve IPs)
 
 They are tree important objects:
 
 .. autoclass:: upnp.Announcer
 
+    See :class:`upnp.UPnP.Announcer`
+
 .. autoclass:: upnp.Device
 
+    See :class:`upnp.Objects.Device`
+
 .. autoclass:: upnp.Service
+
+    See :class:`upnp.Objects.Service`
 
 All objects can be set with theirs attributes or by passing a dict on the contructor.
 
