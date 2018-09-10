@@ -50,4 +50,4 @@ Full documentation
 ------------------
 
 The full documentation are build with sphinx. It can be found on ReadTheDocs.
-page : https://iot-upnp.readthedocs.io/en/latest/.
+page : https://iot-upnp.readthedocs.io/.
