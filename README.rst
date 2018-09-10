@@ -32,19 +32,18 @@ Requirement
 
 You need Python 3.x to use this library.
 
-Documentation
-=============
+Usage and documentation
+=======================
 
 Installation
 ------------
 
 You can use pip to install iot-upnp.
 
-::
+.. code::
 
    pip install iot-upnp
 
-::
 
 Full documentation
 ------------------
