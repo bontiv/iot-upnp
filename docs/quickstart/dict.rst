@@ -3,7 +3,7 @@ Usage with dict
 
 For easy class initialisation, you can call the constructor with a dict.
 
-.. code: python
+.. highlight:: python
 
   import upnp
 
@@ -32,4 +32,3 @@ For easy class initialisation, you can call the constructor with a dict.
 
   The UUID of the device must be unique and not change even if the application
   restart.
-  
