@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 
-class BaseObj:
+class _BaseObj:
+    """
+    Base object with dict initialisation
+
+    """
     def __init__(self, obj=None):
         if obj == None:
             return
@@ -9,10 +13,14 @@ class BaseObj:
             if hasattr(self, atr):
                 setattr(self, atr, obj[atr])
 
-class Device(BaseObj):
+class Device(_BaseObj):
+    """
+    An UPnP device on the Network
+    """
     def __init__(self, obj=None):
         """
-        Device object
+        Device object initialisation
+        :param obj: A dict with attributes
         """
         self.services = []
         self.devices = []
@@ -32,12 +40,26 @@ class Device(BaseObj):
         super(Device, self).__init__(obj)
 
     def addService(self, service):
+        """
+        Add a service on this device
+        :param service: The service to add
+        :type service: upnp.Service
+        """
         self.services.append(service)
 
     def addDevice(self, device):
+        """
+        Add an embedded device
+        :param device: The embedded device to add
+        :type device: upnp.Device
+        """
         self.devices.append(device)
 
-class Icon(BaseObj):
+class Icon(_BaseObj):
+    """
+    An device icon
+    (don't work on Windows)
+    """
     def __init__(self, obj=None):
         self.width = 32
         self.height = 32
@@ -46,10 +68,13 @@ class Icon(BaseObj):
 
         super(Icon, self).__init__(obj)
 
-class Service(BaseObj):
+class Service(_BaseObj):
+    """
+    A service on a device
+    """
     def __init__(self, obj=None):
         """
-        Service object
+        Service object initialisation
         """
         self.serviceType = ''
         self.serviceId = ''
