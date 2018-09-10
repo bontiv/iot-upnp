@@ -38,7 +38,7 @@ jobs:
       script:
         - python3 -m pytest --cov-branch --cov=./ --cov-report=xml:coverage.xml
         - which pylint
-        - pylint upnp > pylint.txt
+        - pylint upnp > pylint.txt || true
         - sonar-scanner -Dsonar.projectVersion=$TRAVIS_TAG
       addons:
         sonarcloud:
