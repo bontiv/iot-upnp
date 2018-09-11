@@ -1,0 +1,366 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>upnp.SSDP module &#8212; IoT-UPnP  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="upnp.UPnP module" href="upnp.UPnP.html" />
+    <link rel="prev" title="upnp.Objects module" href="upnp.Objects.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-upnp.SSDP">
+<span id="upnp-ssdp-module"></span><h1>upnp.SSDP module<a class="headerlink" href="#module-upnp.SSDP" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="upnp.SSDP.AnnouncerService">
+<em class="property">class </em><code class="descclassname">upnp.SSDP.</code><code class="descname">AnnouncerService</code><a class="headerlink" href="#upnp.SSDP.AnnouncerService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ssdp.SimpleServiceDiscoveryProtocol</span></code></p>
+<p>Endpoint for UDP packets (used by asyncio)</p>
+<dl class="method">
+<dt id="upnp.SSDP.AnnouncerService.connection_made">
+<code class="descname">connection_made</code><span class="sig-paren">(</span><em>transport</em><span class="sig-paren">)</span><a class="headerlink" href="#upnp.SSDP.AnnouncerService.connection_made" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when the connection is made</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>transport</strong> (<em>asyncio.BaseTransport</em>) – The endpoint transport</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="upnp.SSDP.AnnouncerService.request_received">
+<code class="descname">request_received</code><span class="sig-paren">(</span><em>request</em>, <em>addr</em><span class="sig-paren">)</span><a class="headerlink" href="#upnp.SSDP.AnnouncerService.request_received" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle a new SSDP packet</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>request</strong> – Request informations</li>
+<li><strong>addr</strong> – Adress of the peer</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="upnp.SSDP.AnnouncerService.response_received">
+<code class="descname">response_received</code><span class="sig-paren">(</span><em>response</em>, <em>addr</em><span class="sig-paren">)</span><a class="headerlink" href="#upnp.SSDP.AnnouncerService.response_received" title="Permalink to this definition">¶</a></dt>
+<dd><p>Not used</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="upnp.SSDP.Answer">
+<em class="property">class </em><code class="descclassname">upnp.SSDP.</code><code class="descname">Answer</code><span class="sig-paren">(</span><em>config</em>, <em>status_code</em>, <em>reason</em><span class="sig-paren">)</span><a class="headerlink" href="#upnp.SSDP.Answer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ssdp.SSDPResponse</span></code></p>
+<p>Answer packet for M-SEARCH queries</p>
+<dl class="method">
+<dt id="upnp.SSDP.Answer.send">
+<code class="descname">send</code><span class="sig-paren">(</span><em>device</em>, <em>ip</em>, <em>addr</em><span class="sig-paren">)</span><a class="headerlink" href="#upnp.SSDP.Answer.send" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send the UDP answer</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>device</strong> (<a class="reference internal" href="upnp.Objects.html#upnp.Objects.Device" title="upnp.Objects.Device"><em>upnp.Objects.Device</em></a>) – Device to announce</li>
+<li><strong>ip</strong> (<em>str</em>) – IP of device</li>
+<li><strong>addr</strong> (<em>str</em>) – Destination IP</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="upnp.SSDP.Answer.sendto">
+<code class="descname">sendto</code><span class="sig-paren">(</span><em>transport</em>, <em>addr</em><span class="sig-paren">)</span><a class="headerlink" href="#upnp.SSDP.Answer.sendto" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rewriting of raw sending method (error at the end of headers).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>transport</strong> (<em>asyncio.BaseTransport</em>) – Transport to use</li>
+<li><strong>addr</strong> (<em>str</em>) – Destination address</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="upnp.SSDP.Notify">
+<em class="property">class </em><code class="descclassname">upnp.SSDP.</code><code class="descname">Notify</code><span class="sig-paren">(</span><em>config</em>, <em>device</em><span class="sig-paren">)</span><a class="headerlink" href="#upnp.SSDP.Notify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ssdp.SSDPRequest</span></code></p>
+<p>SSDP Notify packet</p>
+<dl class="method">
+<dt id="upnp.SSDP.Notify.send">
+<code class="descname">send</code><span class="sig-paren">(</span><em>ip</em>, <em>usn=None</em>, <em>transport=None</em><span class="sig-paren">)</span><a class="headerlink" href="#upnp.SSDP.Notify.send" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build and send the packet</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ip</strong> (<em>str</em>) – Destination IP</li>
+<li><strong>usn</strong> (<em>str</em>) – USN to notify</li>
+<li><strong>transport</strong> (<em>asyncio.BaseTransport</em>) – Transport to use</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="upnp.SSDP.Notify.sendto">
+<code class="descname">sendto</code><span class="sig-paren">(</span><em>transport</em>, <em>addr</em><span class="sig-paren">)</span><a class="headerlink" href="#upnp.SSDP.Notify.sendto" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rewriting of raw sending method (error at the end of headers).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>transport</strong> (<em>asyncio.BaseTransport</em>) – Transport to use</li>
+<li><strong>addr</strong> (<em>str</em>) – Destination address</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="upnp.SSDP.SSDP">
+<em class="property">class </em><code class="descclassname">upnp.SSDP.</code><code class="descname">SSDP</code><span class="sig-paren">(</span><em>annoncer</em>, <em>netBind='0.0.0.0'</em><span class="sig-paren">)</span><a class="headerlink" href="#upnp.SSDP.SSDP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Public class to handle SSDP protocol</p>
+<dl class="method">
+<dt id="upnp.SSDP.SSDP.dispose">
+<code class="descname">dispose</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#upnp.SSDP.SSDP.dispose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close SSDP handling</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="upnp.SSDP.SSDP.initLoop">
+<code class="descname">initLoop</code><span class="sig-paren">(</span><em>loop</em><span class="sig-paren">)</span><a class="headerlink" href="#upnp.SSDP.SSDP.initLoop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initiate an asyncio event loop</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>loop</strong> (<em>asyncio.AbstractEventLoop</em>) – An asyncio event loop</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="upnp.SSDP.SSDP.notify">
+<code class="descname">notify</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#upnp.SSDP.SSDP.notify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send NOTIFY packets</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="upnp.SSDP.SSDP_Protocol">
+<em class="property">class </em><code class="descclassname">upnp.SSDP.</code><code class="descname">SSDP_Protocol</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#upnp.SSDP.SSDP_Protocol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Simple class to send packets</p>
+<dl class="method">
+<dt id="upnp.SSDP.SSDP_Protocol.answer">
+<code class="descname">answer</code><span class="sig-paren">(</span><em>st</em>, <em>addr</em><span class="sig-paren">)</span><a class="headerlink" href="#upnp.SSDP.SSDP_Protocol.answer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Answer to an M-SEARCH query</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>st</strong> (<em>str</em>) – Queried subject</li>
+<li><strong>addr</strong> (<em>(</em><em>str</em><em>, </em><em>int</em><em>)</em>) – Destination address of answer</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="upnp.SSDP.SSDP_Protocol.getDevices">
+<code class="descname">getDevices</code><span class="sig-paren">(</span><em>st</em><span class="sig-paren">)</span><a class="headerlink" href="#upnp.SSDP.SSDP_Protocol.getDevices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all devices which match ST</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>st</strong> (<em>str</em>) – Queried subject to match</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">List of devices that match query</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list(<a class="reference internal" href="upnp.Objects.html#upnp.Objects.Device" title="upnp.Objects.Device">upnp.Objects.Device</a>)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="upnp.SSDP.SSDP_Protocol.notify">
+<code class="descname">notify</code><span class="sig-paren">(</span><em>device</em>, <em>ip</em><span class="sig-paren">)</span><a class="headerlink" href="#upnp.SSDP.SSDP_Protocol.notify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send NOTIFY packets for a device (services and embedded devices)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>device</strong> (<a class="reference internal" href="upnp.Objects.html#upnp.Objects.Device" title="upnp.Objects.Device"><em>upnp.Objects.Device</em></a>) – Device to announce</li>
+<li><strong>ip</strong> (<em>str</em>) – IP of the device</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="upnp.SSDP.SSDP_Protocol.provides">
+<code class="descname">provides</code><span class="sig-paren">(</span><em>usn</em><span class="sig-paren">)</span><a class="headerlink" href="#upnp.SSDP.SSDP_Protocol.provides" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if USN is provided by root device</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>usn</strong> (<em>str</em>) – USN to test</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True if USN is provided</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">IoT-UPnP</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">Quickstart</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">upnp</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="upnp.html">upnp package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="upnp.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="upnp.HTTP.html">upnp.HTTP module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="upnp.Objects.html">upnp.Objects module</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">upnp.SSDP module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="upnp.UPnP.html">upnp.UPnP module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="upnp.html#module-upnp">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../links.html">API Documentation</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">upnp</a><ul>
+  <li><a href="upnp.html">upnp package</a><ul>
+      <li>Previous: <a href="upnp.Objects.html" title="previous chapter">upnp.Objects module</a></li>
+      <li>Next: <a href="upnp.UPnP.html" title="next chapter">upnp.UPnP module</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Remi BONNET.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
+      
+      |
+      <a href="../_sources/apidoc/upnp.SSDP.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
