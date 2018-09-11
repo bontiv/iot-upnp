@@ -1,35 +1,54 @@
+.. list-table::
+  :header-rows: 0
+  :stub-columns: 1
+  :widths: 30 70
+
+  * - Builds
+    - .. image:: https://travis-ci.org/bontiv/iot-upnp.svg?branch=master
+        :target: https://travis-ci.org/bontiv/iot-upnp
+        :alt: CI Status
+
+      .. image:: https://readthedocs.org/projects/iot-upnp/badge/?version=latest
+        :target: https://iot-upnp.readthedocs.io/en/latest/?badge=latest
+        :alt: Documentation Status
+
+  * - Code Quality
+    - .. image:: https://codecov.io/gh/bontiv/iot-upnp/branch/master/graph/badge.svg
+          :target: https://codecov.io/gh/bontiv/iot-upnp
+          :alt: Coverage Status
+
+      .. image:: https://sonarcloud.io/api/project_badges/measure?project=bontiv_iot-upnp&metric=sqale_rating
+          :target: https://sonarcloud.io/dashboard?id=bontiv_iot-upnp
+          :alt: Code maintainability
+
+      .. image:: https://sonarcloud.io/api/project_badges/measure?project=bontiv_iot-upnp&metric=alert_status
+          :target: https://sonarcloud.io/dashboard?id=bontiv_iot-upnp
+          :alt: Code quality
+
+  * - Releases information
+    - .. image:: https://img.shields.io/pypi/status/iot-upnp.svg
+          :alt: PyPI - Status
+          :target: https://pypi.org/project/iot-upnp/
+
+      .. image:: https://img.shields.io/pypi/format/iot-upnp.svg
+          :alt: PyPI - Format
+          :target: https://pypi.org/project/iot-upnp/#files
+
+      .. image:: https://img.shields.io/pypi/v/iot-upnp.svg
+          :alt: PyPI - Available version
+          :target: https://pypi.org/project/iot-upnp/
+
+  * - Package information
+    - .. image:: https://img.shields.io/pypi/pyversions/iot-upnp.svg
+          :alt: PyPI - Python versions
+          :target: https://pypi.org/project/iot-upnp/#history
+
+      .. image:: https://img.shields.io/github/license/bontiv/iot-upnp.svg
+         :alt: GitHub license
+         :target: https://github.com/bontiv/iot-upnp/blob/master/LICENSE
+
 IoT UPnP
 ========
-
-.. image:: https://travis-ci.org/bontiv/iot-upnp.svg?branch=master
-    :target: https://travis-ci.org/bontiv/iot-upnp
-    :alt: CI Status
-.. image:: https://readthedocs.org/projects/iot-upnp/badge/?version=latest
-    :target: https://iot-upnp.readthedocs.io/en/latest/?badge=latest
-    :alt: Documentation Status
-.. image:: https://codecov.io/gh/bontiv/iot-upnp/branch/master/graph/badge.svg
-      :target: https://codecov.io/gh/bontiv/iot-upnp
-      :alt: Coverage Status
-.. image:: https://sonarcloud.io/api/project_badges/measure?project=bontiv_iot-upnp&metric=sqale_rating
-      :target: https://sonarcloud.io/dashboard?id=bontiv_iot-upnp
-      :alt: Code maintainability
-.. image:: https://sonarcloud.io/api/project_badges/measure?project=bontiv_iot-upnp&metric=alert_status
-      :target: https://sonarcloud.io/dashboard?id=bontiv_iot-upnp
-      :alt: Code quality
-.. image:: https://img.shields.io/pypi/status/iot-upnp.svg
-   :alt: PyPI - Status
-.. image:: https://img.shields.io/pypi/format/iot-upnp.svg
-    :alt: PyPI - Format
-    :target: https://pypi.org/project/iot-upnp/#files
-.. image:: https://img.shields.io/pypi/pyversions/iot-upnp.svg
-    :alt: PyPI - Python versions
-.. image:: https://img.shields.io/pypi/v/iot-upnp.svg
-    :alt: PyPI - Available version
-    :target: https://pypi.org/project/iot-upnp/
-.. image:: https://img.shields.io/github/license/bontiv/iot-upnp.svg
-   :alt: GitHub license
-   :target: https://github.com/bontiv/iot-upnp/blob/master/LICENSE
-
 This project is a little pure Python library to annonce a device by
 UPnP. It’s made for IoT developers to let them show their device on
 network discovery in any OS.
