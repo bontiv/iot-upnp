@@ -16,6 +16,19 @@ IoT UPnP
 .. image:: https://sonarcloud.io/api/project_badges/measure?project=bontiv_iot-upnp&metric=alert_status
       :target: https://sonarcloud.io/dashboard?id=bontiv_iot-upnp
       :alt: Code quality
+.. image:: https://img.shields.io/pypi/status/iot-upnp.svg
+   :alt: PyPI - Status
+.. image:: https://img.shields.io/pypi/format/iot-upnp.svg
+    :alt: PyPI - Format
+    :target: https://pypi.org/project/iot-upnp/#files
+.. image:: https://img.shields.io/pypi/pyversions/iot-upnp.svg
+    :alt: PyPI - Python versions
+.. image:: https://img.shields.io/pypi/v/iot-upnp.svg
+    :alt: PyPI - Available version
+    :target: https://pypi.org/project/iot-upnp/
+.. image:: https://img.shields.io/github/license/bontiv/iot-upnp.svg
+   :alt: GitHub license
+   :target: https://github.com/bontiv/iot-upnp/blob/master/LICENSE
 
 This project is a little pure Python library to annonce a device by
 UPnP. It’s made for IoT developers to let them show their device on
