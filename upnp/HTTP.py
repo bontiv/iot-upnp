@@ -254,7 +254,7 @@ class HttpServer:
         """
         self.config = config
 
-    def InConnection(self, reader, writer):
+    async def InConnection(self, reader, writer):
         """
         A new incomming connection
 
@@ -264,13 +264,13 @@ class HttpServer:
         :type writer: asyncio.StreamWriter
         """
 
-        header = yield from reader.readline()
+        header = await reader.readline()
         cheaders = header.decode('latin1').strip()
         method, path, vers = cheaders.split(' ')
         headers = dict()
 
         while not reader.at_eof():
-            rawheaders = yield from reader.readline()
+            rawheaders = await reader.readline()
             headline = rawheaders.decode('latin1').strip().lower()
             if headline == '':
                 break

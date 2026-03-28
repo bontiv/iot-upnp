@@ -66,7 +66,7 @@ witch easy discover all cameras with this service.
 Requirement
 ===========
 
-You need Python 3.x to use this library.
+You need Python 3.5 or greater to use this library.
 
 Usage and documentation
 =======================
